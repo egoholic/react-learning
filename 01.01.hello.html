@@ -15,22 +15,14 @@
     <script>
       var Component = React.createClass({
         render: function() {
-          return React.DOM.span(null, " I'm so custom");
+          return React.DOM.span(null, "My name is " + this.props.name);
         }
       });
 
       ReactDOM.render(
-        React.DOM.h1(
-          {
-            id: "my-heading"
-          },
-          React.DOM.span(null,
-            React.DOM.em(null, "Hell"),
-            "o"
-          ),
-          " World!",
-          React.createElement(Component)
-        ),
+        React.createElement(Component, {
+          name: "Bob"
+        }),
 
         document.getElementById("app")
       );
