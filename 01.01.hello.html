@@ -13,7 +13,35 @@
     <script src="react/build/react.js"></script>
     <script src="react/build/react-dom.js"></script>
     <script>
+      var logMixin = {
+        _log: function(methodName, args) {
+          console.log(methodName, args);
+        },
+
+        componentWillUpdate: function() {
+          this._log('componentWillUpdate', arguments);
+        },
+
+        componentDidUpdate: function(oldProps, oldState) {
+          this._log('componentDidUpdate', arguments);
+        },
+
+        componentWillMount: function() {
+          this._log('componentWillMount', arguments);
+        },
+
+        componentDidMount: function() {
+          this._log('componentDidMount', arguments);
+        },
+
+        componentWillUnmount: function() {
+          this._log('componentWillUnmount', arguments);
+        },
+      };
+
       var TextAreaCounter = React.createClass({
+        name: 'TextAreaCounter',
+        mixins: [logMixin],
         propTypes: {
           text:  React.PropTypes.string
         },
@@ -36,33 +64,7 @@
           })
         },
 
-        _log: function(methodName, args) {
-          console.log(methodName, args);
-        },
 
-        componentWillUpdate: function() {
-          this._log('componentWillUpdate', arguments);
-        },
-
-        componentDidUpdate: function(oldProps, oldState) {
-          this._log('componentDidUpdate', arguments);
-
-          if (this.state.text.length > 3) {
-            this.replaceState(oldState);
-          }
-        },
-
-        componentWillMount: function() {
-          this._log('componentWillMount', arguments);
-        },
-
-        componentDidMount: function() {
-          this._log('componentDidMount', arguments);
-        },
-
-        componentWillUnmount: function() {
-          this._log('componentWillUnmount', arguments);
-        },
 
         render: function() {
           return React.DOM.div(null,
