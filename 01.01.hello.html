@@ -36,6 +36,34 @@
           })
         },
 
+        _log: function(methodName, args) {
+          console.log(methodName, args);
+        },
+
+        componentWillUpdate: function() {
+          this._log('componentWillUpdate', arguments);
+        },
+
+        componentDidUpdate: function(oldProps, oldState) {
+          this._log('componentDidUpdate', arguments);
+
+          if (this.state.text.length > 3) {
+            this.replaceState(oldState);
+          }
+        },
+
+        componentWillMount: function() {
+          this._log('componentWillMount', arguments);
+        },
+
+        componentDidMount: function() {
+          this._log('componentDidMount', arguments);
+        },
+
+        componentWillUnmount: function() {
+          this._log('componentWillUnmount', arguments);
+        },
+
         render: function() {
           return React.DOM.div(null,
             React.DOM.textarea({
