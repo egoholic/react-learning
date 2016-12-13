@@ -10,7 +10,7 @@
       <!-- my app renders here -->
     </div>
 
-    <script src="react/build/react.js"></script>
+    <script src="react/build/react-with-addons.js"></script>
     <script src="react/build/react-dom.js"></script>
     <script>
       var logMixin = {
@@ -41,14 +41,10 @@
 
       var Counter = React.createClass({
         name: 'Counter',
-        // mixins: [logMixin],
+        mixins: [React.addons.PureRenderMixin],
 
         propTypes: {
           count: React.PropTypes.number.isRequired
-        },
-
-        shouldComponentUpdate: function(nextProps, nextState_ignore) {
-          return nextProps.count !== this.props.count;
         },
 
         render: function() {
